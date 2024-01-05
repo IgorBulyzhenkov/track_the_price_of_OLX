@@ -36,7 +36,9 @@ class LoginController extends BaseController
             return redirect()->route('home')->with('success','Вітаю '.$user->name);
 
         }catch (\Throwable $e){
+
             return response()->json(ExceptionHelper::returnResponseData($e),404);
+            
         }
     }
 }
