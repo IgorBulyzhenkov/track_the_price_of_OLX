@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    mariadb:
+        image: mariadb
+        container_name: db_mariadb_track_olx
+        environment:
+            - MYSQL_ROOT_PASSWORD=123123
+            - MYSQL_USER=track_olx
+            - MYSQL_DATABASE=track_olx
+            - MYSQL_PASSWORD=123123
+        ports:
+            - 9800:3306
+        volumes:
+            - mariadb_data:/var/lib/mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: db_phpmyadmin_track_olx
+        environment:
+            - PMA_HOST=db_mariadb_track_olx
+            - UPLOAD_limit=5242990000
+        ports:
+            - 9801:80
+
+volumes:
+    mariadb_data:
+    postgres_data:
