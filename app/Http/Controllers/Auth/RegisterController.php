@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends BaseAuthController
 {
-    public function create(UserRegisterRequest $request)
+    public function create(UserRegisterRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
     {
         try{
             DB::beginTransaction();

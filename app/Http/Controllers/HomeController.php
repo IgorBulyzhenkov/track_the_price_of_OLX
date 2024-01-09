@@ -7,26 +7,22 @@ use App\Models\Goods;
 
 class HomeController extends BaseController
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $data = $this->getGoods();
-
-//        $test = new SendEmailCron();
-//
-//        dd($test->handle());
 
         return view('home.index',[
             'data'  => $data
         ]);
     }
 
-    private function getGoods()
+    private function getGoods(): \Illuminate\Support\Collection
     {
-        $data = collect([]);
+        $data           = collect([]);
 
-        $goodsToUser = auth()->user()->goods;
+        $goodsToUser    = auth()->user()->goods;
 
-        $idProduct = [];
+        $idProduct      = [];
 
         foreach ($goodsToUser as $el){
             $idProduct[] = $el['fk_product'];
@@ -39,10 +35,10 @@ class HomeController extends BaseController
         if($goods){
             foreach ($goods as $product) {
 
-                $link = '<a href="'.$product->link.'">'.$product->name.'</a>';
+                $link       = '<a href="'.$product->link.'">'.$product->name.'</a>';
 
-                $currency = $product->currency === self::UAH ? 'грн' :
-                            ($product->currency === self::USD ? '$' : '€');
+                $currency   = $product->currency === self::UAH ? 'грн' :
+                                ($product->currency === self::USD ? '$' : '€');
 
                 $data->push(collect([
                     $product->id_product,

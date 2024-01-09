@@ -18,6 +18,7 @@ class ScraperServices
     const USD           = 'USD';
     const UAH           = 'UAH';
     const EUR           = 'EUR';
+
     public function scrape($data)
     {
         $client     = new Client();
@@ -46,9 +47,7 @@ class ScraperServices
             'link'          => $data['link']
         ];
 
-        $id = $this->product($dataProduct);
-
-        return $id;
+        return $this->product($dataProduct);
     }
 
     private function product($data){

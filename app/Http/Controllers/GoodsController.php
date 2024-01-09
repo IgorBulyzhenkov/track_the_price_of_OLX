@@ -9,17 +9,17 @@ use Carbon\Carbon;
 
 class GoodsController extends Controller
 {
-    private $scrapeService;
+    private ScraperServices $scrapeService;
     public function __construct(ScraperServices $scraperServices)
     {
         $this->scrapeService    = $scraperServices;
     }
 
-    public function create(GoodsRequest $request)
+    public function create(GoodsRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data   = $request->validated();
 
-        $id = $this->scrapeService->scrape($data);
+        $id     = $this->scrapeService->scrape($data);
 
         if(!$id){
             return redirect()->route('home')->with('error', 'Це посилання не можливо обробити, додайте інше посилання!');
