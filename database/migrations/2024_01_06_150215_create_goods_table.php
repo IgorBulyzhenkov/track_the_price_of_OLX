@@ -16,9 +16,8 @@ return new class extends Migration
             $table->string('id_product')->unique()->nullable();
             $table->string('name')->nullable();
             $table->string('price')->nullable();
+            $table->enum('currency',['USD', 'UAH', 'EUR'])->default('UAH');
             $table->string('link');
-            $table->enum('time_update', ['1', '5', '12', '24'])->default('24');
-            $table->dateTime('time_send');
             $table->enum('is_active',['0','1'])->default('0');
             $table->timestamps();
         });

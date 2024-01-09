@@ -9,4 +9,8 @@ class BaseController extends Controller
     const STATUS_OK         = '1';
     const STATUS_ERR        = '0';
 
+    const USD               = 'USD';
+    const UAH               = 'UAH';
+    const EUR               = 'EUR';
+
 }

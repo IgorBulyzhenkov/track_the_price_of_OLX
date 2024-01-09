@@ -9,6 +9,9 @@
         <title>@yield('title')Login</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
+        <link href="/css/fontawesome.css" rel="stylesheet">
+        <link href="/css/new_category.css" rel="stylesheet">
+        <link href="/css/datatables.css" rel="stylesheet">
     </head>
     <body>
         @include('layouts._parts.header')

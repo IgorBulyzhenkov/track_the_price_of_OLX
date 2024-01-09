@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('goods_to_users', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('fk_user')->constrained('users','id')->cascadeOnDelete();
             $table->foreignId('fk_product')->constrained('goods','id')->cascadeOnDelete();
+            $table->enum('time_update', ['1', '5', '12', '24'])->default('24');
+            $table->string('time_send')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -50,4 +50,9 @@ class User extends Authenticatable
         'updated_at'        => 'date',
     ];
 
+    public function goods(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(GoodsToUsers::class,'fk_user');
+    }
+
 }

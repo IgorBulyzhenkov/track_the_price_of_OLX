@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Email\ConfirmEmailController;
+use App\Http\Controllers\GoodsController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,8 @@ Route::middleware('guest')->group( function(){
 
 Route::middleware('auth')->group( function (){
 
-    Route::view('/',                        'home.index')->name('home');
-
+    Route::get('/',                             [HomeController::class, 'index'])->name('home');
     Route::get('/logout',                       [LogoutController::class, 'logout'])->name('logout');
+
+    Route::post('/product/create',              [GoodsController::class, 'create'])->name('product.create');
 });

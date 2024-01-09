@@ -3,48 +3,32 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Exceptions\ExceptionHelper;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Mail\ConfirmEmail;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseAuthController
 {
-    public function create(Request $request)
+    public function create(UserRegisterRequest $request)
     {
         try{
             DB::beginTransaction();
 
-            $req = new UserRegisterRequest();
-
-            $validator = Validator::make(
-                $request->all(),
-                $req->rules()
-            );
-
-            if ($validator->fails()) {
-                return redirect()->route('register')->with('error', 'Не вийшло зареєструвати користувача!');
-            }
+            $data = $request->validated();
 
             $user = User::query()
                 ->create([
-                    'name'      => $request->name,
-                    'email'     => $request->email,
-                    'password'  => $request->password,
+                    'name'      => $data['name'],
+                    'email'     => $data['email'],
+                    'password'  => $data['password'],
                 ]);
 
-//            dd($user);
-//            $accessToken = $user->createToken($user->email)->plainTextToken;
-
             $currentDateTime    = Carbon::now();
-            $newDateTime        = $currentDateTime->addSeconds(600);
+            $newDateTime        = $currentDateTime->addSeconds(6);
 
             Cache::put('email_send_'.$user->id,'send',$newDateTime);
 
