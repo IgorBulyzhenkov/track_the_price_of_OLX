@@ -68,21 +68,21 @@
     </li>
 </ul>
 
-    `composer install`
+    composer install
 <ul>
     <li>
         <p>створюєте файл і заповнюєте поля для відправки емейлів, і з'єднання з базою данних</p> 
     </li>
 </ul>
 
-    `.env` 
+    .env
 <ul>
     <li>
         <p>Генеруємо ключ</p>
     </li>
 </ul>
 
-    `php artisan key:generate`
+    php artisan key:generate
 <ul>
     <li>
         <p>Встановлюємо контейнер з базою данних в Докер</p>
@@ -96,7 +96,7 @@
     </li>
 </ul>
 
-    `docker ps`
+    docker ps
 <ul>
   <li>
         <p>Встановлюємо таблиці до нашої бази данних</p>
@@ -118,14 +118,14 @@
     </li>
 </ul>
 
-    `php artisan serv`
+    php artisan serv
 <ul>
     <li>
         <p>Запускаємо ще одну консоль, і вній запускаємо crone, який буде слідкувати за зміною ціни в оголошеннях на OLX</p>
     </li>
 </ul>
 
-    `php artisan schedule:work`
+    php artisan schedule:work
  
 
 
