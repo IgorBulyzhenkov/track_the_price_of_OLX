@@ -35,7 +35,7 @@ class HomeController extends BaseController
         if($goods){
             foreach ($goods as $product) {
 
-                $link       = '<a href="'.$product->link.'">'.$product->name.'</a>';
+                $link       = '<a href="'.$product->link.'" target="_blade">'.$product->name.'</a>';
 
                 $currency   = $product->currency === self::UAH ? 'грн' :
                                 ($product->currency === self::USD ? '$' : '€');

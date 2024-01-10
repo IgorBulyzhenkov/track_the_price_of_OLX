@@ -28,7 +28,7 @@ class RegisterController extends BaseAuthController
                 ]);
 
             $currentDateTime    = Carbon::now();
-            $newDateTime        = $currentDateTime->addSeconds(6);
+            $newDateTime        = $currentDateTime->addSeconds(600);
 
             Cache::put('email_send_'.$user->id,'send',$newDateTime);
 

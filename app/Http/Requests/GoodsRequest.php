@@ -22,7 +22,7 @@ class GoodsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link'          => ['required', 'string', 'min:8'],
+            'link'          => ['required', 'string'],
             'time_update'   => ['required', 'string']
         ];
     }

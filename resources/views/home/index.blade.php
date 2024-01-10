@@ -14,14 +14,14 @@
                             class="fa-solid fa-circle-plus icon_plus_link"></i>Додати</a>
                     <div class="modal_new" id="modal_new">
                         <div>
-                            <form action="{{ route('product.create') }}" method="POST" class="page-form__info form">
+                            <form action="{{ route('product.create') }}" method="POST" class="page-form__info form" id="form_save">
                                 @csrf
                                 <h3 class="form__title">Новий товар</h3>
                                 <div class="form__wrap">
                                     <div class="form__item">
                                         <label class="w-100">
                                             <input data-error="Введіть посилання на товар" data-required="text"
-                                                   data-validate name="link" type="text"
+                                                   data-validate name="link" type="text" id="link"
                                                    placeholder="Введіть посилання на товар" class="form__input">
                                         </label>
                                     </div>
@@ -37,7 +37,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="form__button btn">Зберегти</button>
+                                <button type="submit" class="form__button btn" id="btn_submit">Зберегти</button>
                             </form>
                         </div>
                     </div>
@@ -60,7 +60,6 @@
                     </div>
                 </div>
             </div>
-            <div class="backdrop" id="backdrop"></div>
         </section>
     </main>
 

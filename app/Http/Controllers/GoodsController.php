@@ -15,7 +15,7 @@ class GoodsController extends Controller
         $this->scrapeService    = $scraperServices;
     }
 
-    public function create(GoodsRequest $request): \Illuminate\Http\RedirectResponse
+    public function create(GoodsRequest $request)
     {
         $data   = $request->validated();
 
@@ -26,6 +26,17 @@ class GoodsController extends Controller
         }
 
         $time_send = Carbon::now('Europe/Kiev')->addHours($data['time_update'])->timestamp;
+
+        $goodsToUsers = GoodsToUsers::query()
+            ->where([
+                'fk_user'       => auth()->id(),
+                'fk_product'    => $id
+            ])
+            ->exists();
+
+        if($goodsToUsers){
+            return redirect()->route('home')->with('success', 'Ви вже додали цей товар для відстежування!');
+        }
 
         GoodsToUsers::query()
             ->create([

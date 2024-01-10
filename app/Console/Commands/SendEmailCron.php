@@ -48,7 +48,7 @@ class SendEmailCron extends Command
 
                 $currentPrice = $this->getCurrentPrice($data['link']);
 
-                if ($currentPrice['price'] !== $data['price']) {
+                if ((int) $currentPrice['price'] !== (int) $data['price']) {
                     $this->updateProductPrice($product, $currentPrice);
                     $this->notifyUser($product, $data);
                 }

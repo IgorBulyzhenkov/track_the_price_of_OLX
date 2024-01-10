@@ -2,19 +2,12 @@
 
 namespace App\Services\Scraper;
 
-use App\Mail\ChangePriceEmail;
 use App\Models\Goods;
-use App\Models\GoodsToUsers;
-use Carbon\Carbon;
 use Goutte\Client;
-use Illuminate\Support\Facades\Mail;
-use PHPUnit\Event\Code\Throwable;
 
 class ScraperServices
 {
     const BOOL_TRUE     = '1';
-    const BOOL_FALSE    = '0';
-
     const USD           = 'USD';
     const UAH           = 'UAH';
     const EUR           = 'EUR';
@@ -30,6 +23,10 @@ class ScraperServices
         }
 
         $productId  = explode(' ', $crawler->filter('.css-12hdxwj')->text());
+
+        if($id = $this->findId($productId[1])){
+            return $id;
+        }
 
         $name       = $crawler->filter('.css-1juynto')->text();
 
@@ -50,14 +47,8 @@ class ScraperServices
         return $this->product($dataProduct);
     }
 
-    private function product($data){
-
-        $product = Goods::query()
-            ->where('id_product', $data['productId'])
-            ->first();
-
-        if(empty($product['id'])) {
-
+    private function product($data)
+    {
             $product_new = Goods::query()
                 ->create([
                     'link'          => $data['link'],
@@ -69,9 +60,15 @@ class ScraperServices
                 ]);
 
             return $product_new->id;
-        }
+    }
 
-        return $product['id'];
+    private function findId($id)
+    {
+        $product = Goods::query()
+            ->where('id_product', $id)
+            ->first();
+
+        return is_null($product) ? $product : $product['id'];
     }
 
     public function findPrice($url, $client = new Client(), $crawler = null): array

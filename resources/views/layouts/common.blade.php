@@ -9,6 +9,7 @@
         <title>@yield('title')Login</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
+        <link href="/css/loader.css" rel="stylesheet">
         <link href="/css/fontawesome.css" rel="stylesheet">
         <link href="/css/new_category.css" rel="stylesheet">
         <link href="/css/datatables.css" rel="stylesheet">
@@ -17,9 +18,11 @@
         @include('layouts._parts.header')
         <div class="wrapper">
             @yield('content')
+            <div class="backdrop" id="backdrop"></div>
         </div>
         @include('layouts._parts.footer')
         @include('layouts._parts.alerts')
+        @include('layouts._parts.loader')
     </body>
     @include('layouts._parts.scripts')
 </html>
