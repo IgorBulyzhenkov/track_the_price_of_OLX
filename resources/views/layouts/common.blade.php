@@ -13,6 +13,7 @@
         <link href="/css/fontawesome.css" rel="stylesheet">
         <link href="/css/new_category.css" rel="stylesheet">
         <link href="/css/datatables.css" rel="stylesheet">
+        <link href="/css/footer.css" rel="stylesheet">
     </head>
     <body>
         @include('layouts._parts.header')

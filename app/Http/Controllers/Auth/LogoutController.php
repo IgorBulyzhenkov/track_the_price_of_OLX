@@ -16,6 +16,10 @@ class LogoutController extends BaseController
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success','Ви вийшли з сервісу!');
+        return redirect()
+            ->route('login', [
+                'date'  => $this->date
+            ])
+            ->with('success','Ви вийшли з сервісу!');
     }
 }

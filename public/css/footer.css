@@ -1,0 +1,43 @@
+.footer__wrap{
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.footerData{
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.footerData::before{
+    content: "\00A9";
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.footerText{
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.footerText::before{
+    content: "\007C";
+    font-size: 18px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.footer_logo{
+    height: 16px;
+    margin: 0 8px;
+    width: 16px;
+}
+
+.link_footer{
+    color: hsla(0,0%,100%,.4);
+    margin-left: 5px;
+    text-decoration: underline;
+}

@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends BaseAuthController
 {
+    public function index(){
+        return view('auth.register',[
+            'date'  => $this->date
+        ]);
+    }
+
     public function create(UserRegisterRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
     {
         try{
@@ -37,7 +43,11 @@ class RegisterController extends BaseAuthController
 
             DB::commit();
 
-            return redirect()->route('wait')->with('success', 'Вам на почту '.$user->email.' відправлено лист для підтвердження!');
+            return redirect()
+                ->route('wait',[
+                    'date'  => $this->date
+                ])
+                ->with('success', 'Вам на почту '.$user->email.' відправлено лист для підтвердження!');
 
         }catch (\Throwable $e){
 

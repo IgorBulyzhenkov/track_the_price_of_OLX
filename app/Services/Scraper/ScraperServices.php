@@ -71,12 +71,15 @@ class ScraperServices
         return is_null($product) ? $product : $product['id'];
     }
 
-    public function findPrice($url, $client = new Client(), $crawler = null): array
+    public function findPrice($url, $client = new Client(), $crawler = null, $id = null): array|bool
     {
         if(is_null($crawler)) {
             $crawler    = $client->request('GET', $url);
         }
 
+        if($crawler->filter('.css-12vqlj3')->count() === 0){
+            return false;
+        }
         $text_price     = $crawler->filter('.css-12vqlj3')->text();
 
         $currency       = explode(' ', $text_price);

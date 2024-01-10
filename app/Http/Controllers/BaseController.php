@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
@@ -13,4 +14,10 @@ class BaseController extends Controller
     const UAH               = 'UAH';
     const EUR               = 'EUR';
 
+    protected string $date;
+
+    public function __construct()
+    {
+        $this->date = Carbon::now()->format('Y');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Email\ConfirmEmailController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WaitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group( function(){
 
-    Route::view('/register',                'auth.register')->name('register');
-    Route::view('/wait-confirm',            'confirm.wait')->name('wait');
-    Route::view('/login',                   'auth.login')->name('login');
+    Route::get('/register',                     [RegisterController::class, 'index'])->name('register');
+    Route::get('/wait-confirm',                 [WaitController::class, 'index'])->name('wait');
+    Route::get('/login',                        [LoginController::class, 'index'])->name('login');
 
     Route::get('/confirm-email/{token}',        [ConfirmEmailController::class, 'index'])->name('confirm.email');
 

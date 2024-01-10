@@ -40,13 +40,20 @@ class SendEmailCron extends Command
         foreach ($products as $product) {
             $timeNow = Carbon::now('Europe/Kiev')->timestamp;
 
-            if ( $timeNow > (int) $product->time_send) {
+            if ( $timeNow < (int) $product->time_send) {
 
                 $data = Goods::query()
                     ->where('id', $product->fk_product)
                     ->first();
 
                 $currentPrice = $this->getCurrentPrice($data['link']);
+
+                if(!$currentPrice){
+                    $data->is_active = '0';
+                }else{
+                    $data->is_active = '1';
+                }
+                $data->save();
 
                 if ((int) $currentPrice['price'] !== (int) $data['price']) {
                     $this->updateProductPrice($product, $currentPrice);

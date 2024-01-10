@@ -6,7 +6,7 @@
 
 @section('content')
     <main id="success-page">
-        <section class="page-form">
+        <section class="page-form" style="padding-top: 100px">
             <div class="container">
                 <div class="d-flex mb-5 align-items-center justify-content-between container_new_category position-relative">
                     <p class="m-0 title_new_category">Відстежувати оголошення</p>
@@ -53,6 +53,7 @@
                                     <th>ID</th>
                                     <th>Ім'я</th>
                                     <th>Ціна</th>
+                                    <th>В наявності</th>
                                 </tr>
                                 </thead>
                             </table>
