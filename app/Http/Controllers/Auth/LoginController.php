@@ -19,8 +19,6 @@ class LoginController extends BaseController
 
             $data = $request->validated();
 
-            // TODO При возврате на страницу с ошибкой, делать возврат емейла, что бы он оставался в поле емейл
-
             $user = User::query()
                 ->where([
                     'email'         => $data['email'],
