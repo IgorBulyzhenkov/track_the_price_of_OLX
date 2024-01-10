@@ -9,14 +9,14 @@
         <section class="page-form">
             <div class="container">
                 <div class="d-flex mb-5 align-items-center justify-content-between container_new_category position-relative">
-                    <p class="m-0 title_new_category">Додати новий товар</p>
+                    <p class="m-0 title_new_category">Відстежувати оголошення</p>
                     <a class="link_new_category btn btn-info" title="Додати новий товар" id="new_product"><i
-                            class="fa-solid fa-circle-plus icon_plus_link"></i>Додати</a>
+                            class="fa-solid fa-circle-plus icon_plus_link"></i>Відстежувати</a>
                     <div class="modal_new" id="modal_new">
                         <div>
                             <form action="{{ route('product.create') }}" method="POST" class="page-form__info form" id="form_save">
                                 @csrf
-                                <h3 class="form__title">Новий товар</h3>
+                                <h3 class="form__title">Відстежувати оголошення</h3>
                                 <div class="form__wrap">
                                     <div class="form__item">
                                         <label class="w-100">
