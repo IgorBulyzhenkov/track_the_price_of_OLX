@@ -66,7 +66,7 @@
     <li>
         <p>Встановлюємо всі бібліотеки для Laravel</p>
         
-        `composer install`
+        <p>`composer install`</p>
     </li>
     <li>
         <p>створюєте файл</p> 
