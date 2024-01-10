@@ -36,8 +36,6 @@
 
 ## Getting Started
 
-Качаємо архів. Розпаковуємо в папку, де буде знаходитись проект. Після запускаємо консоль, і встановлюємо проект.
-
 <h2>Version :</h2>
 <ul>
     <li>
@@ -47,10 +45,10 @@
         <p style="font-size: 20px"> PHP <span style="color: red">8.2</span></p>
     </li>
     <li>
-        <p style="font-size: 20px"> Docker <span style="color: red">4</span></p>
+        <p style="font-size: 20px"> Docker <span style="color: red"> >= 4</span></p>
     </li>
     <li>
-        <p style="font-size: 20px"> MySQL <span style="color: red">MariaDB-10.8</span></p>
+        <p style="font-size: 20px"> MySQL <span style="color: red">MariaDB - >= 10.8</span></p>
     </li>
     <li>
         <p style="font-size: 20px"> NPM  <span style="color: red">6.14.14</span></p>
@@ -60,3 +58,69 @@
     </span></p>
     </li>
 </ul>
+
+Качаємо архів. Розпаковуємо в папку, де буде знаходитись проект. Після запускаємо консоль, переходимо в папку з проектом і встановлюємо проект.
+Або можна склонувати до себе.
+
+<ul>
+    <li>
+        Встановлюємо всі бібліотеки для Laravel
+        
+        `composer install`
+    </li>
+    <li>
+        створюєте файл 
+        '.env' 
+        і заповнюєте поля для відправки емейлів, і з'єднання з базою данних 
+    </li>
+    <li>
+        Генеруємо ключ
+        
+         `php artisan key:generate`
+    </li>
+    <li>
+        Встановлюємо контейнер з базою данних в Докер
+        
+        `docker-compose up -d`
+    </li>
+    <li>
+        Для перевірки чи запустилася база данних, можна ввести цю команду
+        
+        `docker ps`
+    </li>
+    <li>
+        Встановлюємо таблиці до нашої бази данних
+        
+        `php artisan migrate`
+    </li>
+    <li>
+        Встановлюємо всі js бібліотеки для Laravel
+        
+        `npm install`
+    </li>
+    <li>
+        Запускаємо наш сервіс
+        
+        `php artisan serv`
+
+        Далі переходимо в браузер по посиланню данному в консолі
+    </li>
+    <li>
+        Запускаємо ще одну консоль, і вній запускаємо crone, який буде слідкувати за зміною ціни в оголошеннях на OLX
+        
+        `php artisan schedule:work`
+    </li>
+</ul>
+
+ 
+
+
+
+ 
+ 
+
+
+
+
+
+ 
