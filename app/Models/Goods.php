@@ -23,7 +23,8 @@ class Goods extends Model
         'updated_at'        => 'date',
     ];
 
-    public function goodsToUsers(){
+    public function goodsToUsers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(GoodsToUsers::class, 'fk_product');
     }
 }

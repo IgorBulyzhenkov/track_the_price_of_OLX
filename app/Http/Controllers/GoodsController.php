@@ -15,7 +15,7 @@ class GoodsController extends Controller
         $this->scrapeService    = $scraperServices;
     }
 
-    public function create(GoodsRequest $request)
+    public function create(GoodsRequest $request): \Illuminate\Http\RedirectResponse
     {
         $data   = $request->validated();
 

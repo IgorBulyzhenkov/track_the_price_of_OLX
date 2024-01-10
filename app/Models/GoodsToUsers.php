@@ -21,7 +21,8 @@ class GoodsToUsers extends Model
         return $this->belongsTo(User::class,'fk_user');
     }
 
-    public function fkGoods(){
+    public function fkGoods(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Goods::class, 'id');
     }
 }

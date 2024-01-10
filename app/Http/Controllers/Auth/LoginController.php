@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends BaseController
 {
-    public function create(UserLoginRequest $request)
+    public function create(UserLoginRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
     {
         try{
 
