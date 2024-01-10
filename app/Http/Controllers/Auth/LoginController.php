@@ -31,20 +31,20 @@ class LoginController extends BaseController
                 ])
                 ->first();
 
-            if(!$user->email_verified_at){
-                return redirect()
-                    ->route('wait', [
-                        'date'  => $this->date
-                    ])
-                    ->with('error', 'Підтвердіть будь ласка свій емейл - '.$user->email);
-            }
-
             if(is_null($user) || !Hash::check($request->password, $user->password)){
                 return redirect()
                     ->route('login', [
                         'date'  => $this->date
                     ])
                     ->with('error','Невірний пароль, або емейл!');
+            }
+
+            if(!$user->email_verified_at){
+                return redirect()
+                    ->route('wait', [
+                        'date'  => $this->date
+                    ])
+                    ->with('error', 'Підтвердіть будь ласка свій емейл - '.$user->email);
             }
 
             Auth::login($user);
