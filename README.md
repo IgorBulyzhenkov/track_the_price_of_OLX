@@ -35,3 +35,28 @@
 Якщо ціна змінилася, то на Ваш емейл який Ви вказали при реєстрації, буде відправленно лист, з посиланням на сторінку об'яви, та новою ціною.
 
 ## Getting Started
+
+Качаємо архів. Розпаковуємо в папку, де буде знаходитись проект. Після запускаємо консоль, і встановлюємо проект.
+
+<h2>Version :</h2>
+<ul>
+    <li>
+        <p style="font-size: 20px"> LARAVEL  <span style="color: red">10</span></p>
+    </li>
+    <li>
+        <p style="font-size: 20px"> PHP <span style="color: red">8.2</span></p>
+    </li>
+    <li>
+        <p style="font-size: 20px"> Docker <span style="color: red">4</span></p>
+    </li>
+    <li>
+        <p style="font-size: 20px"> MySQL <span style="color: red">MariaDB-10.8</span></p>
+    </li>
+    <li>
+        <p style="font-size: 20px"> NPM  <span style="color: red">6.14.14</span></p>
+    </li>
+    <li>
+        <p style="font-size: 20px"> NODE.JS  <span style="color: red">min 14.17.4
+    </span></p>
+    </li>
+</ul>
