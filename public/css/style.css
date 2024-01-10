@@ -1322,8 +1322,8 @@ input[type=number]::-webkit-outer-spin-button {
 .page-form__container::before {
     content: "";
     position: absolute;
-    top: -25%;
-    left: -90%;
+    top: 0%;
+    left: -69%;
     width: 1217px;
     height: 975px;
     background-size: contain;
@@ -2150,7 +2150,7 @@ input[type=number]::-webkit-outer-spin-button {
 .custom_alert_success {
     position: absolute;
     top: 85px;
-    right: 15px;
+    right: 8%;
     display: flex;
     align-items: center;
     min-width: 200px;

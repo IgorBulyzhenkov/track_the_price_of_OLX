@@ -1,0 +1,116 @@
+.container_new_category {
+    padding-bottom: 15px;
+    border-bottom: 1px solid;
+}
+
+.icon_plus_link {
+    margin-right: 8px;
+}
+
+.form__select {
+    display: block;
+    width: 100%;
+    height: 42px;
+    border-radius: 15px;
+    font-family: "ActayWide";
+    font-size: 14px;
+    line-height: 1.1428571429;
+    border: 1.2px solid #FFF;
+    color: var(--wh);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 10px 20px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    margin-top: 5px;
+}
+
+.form__select > option {
+    color: #f5f5f5;
+    background-color: #2f3f48;
+    margin-bottom: 5px;
+}
+
+.form__select > option:checked {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: black;
+}
+
+/*.modal_new{*/
+/*    position: absolute;*/
+/*    top: 65px;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%);*/
+/*    z-index: 10;*/
+/*}*/
+
+/*.backdrop{*/
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: #000000d9;*/
+/*    z-index: 7;*/
+/*}*/
+
+.modal_new {
+    position: absolute;
+    top: -275px;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 80%;
+    max-width: 400px;
+    /* background-color: #fff; */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: top 0.6s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #000000d9;
+    z-index: 7;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.modal_new.show {
+    opacity: 1;
+    top: 44px;
+    pointer-events: auto;
+}
+
+.backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll_no {
+    overflow: hidden;
+}
+
+.title_new_category{
+    font-size: 20px;
+}
+
+.dataTables_length{
+    padding-top: 25px;
+}
+
+.dataTables_filter{
+    margin-bottom: 25px;
+}
+
+.dataTables_info{
+    margin-top: 25px;
+}
+
+.dataTables_paginate{
+    margin-top: 25px;
+}

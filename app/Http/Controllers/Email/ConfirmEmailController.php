@@ -23,21 +23,17 @@ class ConfirmEmailController extends BaseController
 
         if (!is_null($user->email_verified_at)){
             Auth::login($user);
-            return redirect()->route('home')->with('success','Емейл успішно пудтверджено!');;
+            return redirect()->route('home')->with('success','Емейл успішно підтверджено!');
         }
 
         Cache::delete('email_send_'.$user->id);
 
-        User::query()
-            ->where([
-                'id' => $user->id
-            ])
-            ->update([
-                'email_verified_at' => Carbon::now()
-            ]);
+        $user->email_verified_at = Carbon::now();
+
+        $user->save();
 
         Auth::login($user);
 
-        return redirect()->route('home')->with('success','Емейл успішно пудтверджено!');
+        return redirect()->route('home')->with('success','Емейл успішно підтверджено!');
     }
 }
