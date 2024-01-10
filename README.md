@@ -48,7 +48,7 @@
         <p style="font-size: 20px"> Docker <span style="color: red"> >= 4</span></p>
     </li>
     <li>
-        <p style="font-size: 20px"> MySQL <span style="color: red">MariaDB - >= 10.8</span></p>
+        <p style="font-size: 20px"> MySQL <span style="color: red">MariaDB >= 10.8</span></p>
     </li>
     <li>
         <p style="font-size: 20px"> NPM  <span style="color: red">6.14.14</span></p>
