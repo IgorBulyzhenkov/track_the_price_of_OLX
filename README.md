@@ -66,44 +66,57 @@
     <li>
         <p>Встановлюємо всі бібліотеки для Laravel</p>
     </li>
+</ul>
     `composer install`
+<ul>
     <li>
         <p>створюєте файл і заповнюєте поля для відправки емейлів, і з'єднання з базою данних</p> 
     </li>
+</ul>
     `.env` 
+<ul>
     <li>
         <p>Генеруємо ключ</p>
     </li>
-     `php artisan key:generate`
+</ul>
+    `php artisan key:generate`
+<ul>
     <li>
         <p>Встановлюємо контейнер з базою данних в Докер</p>
     </li>
-    `docker-compose up -d`
+</ul>
+   `docker-compose up -d`
+<ul>
     <li>
         <p>Для перевірки чи запустилася база данних, можна ввести цю команду</p>
     </li>
+</ul>
     `docker ps`
-    <li>
+<ul>
+  <li>
         <p>Встановлюємо таблиці до нашої бази данних</p>
     </li>
-    `php artisan migrate`
+</ul>
+   `php artisan migrate`
+<ul>
     <li>
         <p>Встановлюємо всі js бібліотеки для Laravel</p>
     </li>
-    `npm install`
-    <li>
+ </ul>
+   `npm install`
+<ul>
+  <li>
         <p>Запускаємо наш сервіс</p>
-        
-        `php artisan serv`
-
         <p>Далі переходимо в браузер по посиланню данному в консолі</p>
     </li>
+</ul>
+    `php artisan serv`
+<ul>
     <li>
         <p>Запускаємо ще одну консоль, і вній запускаємо crone, який буде слідкувати за зміною ціни в оголошеннях на OLX</p>
     </li>
-    `php artisan schedule:work`
 </ul>
-
+    `php artisan schedule:work`
  
 
 
