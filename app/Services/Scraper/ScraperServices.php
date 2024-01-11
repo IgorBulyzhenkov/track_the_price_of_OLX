@@ -3,7 +3,8 @@
 namespace App\Services\Scraper;
 
 use App\Models\Goods;
-use Goutte\Client;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpClient\HttpClient;
 
 class ScraperServices
 {
@@ -14,9 +15,13 @@ class ScraperServices
 
     public function scrape($data)
     {
-        $client     = new Client();
+        $client = HttpClient::create();
 
-        $crawler    = $client->request('GET', $data['link']);
+        $response = $client->request('GET', $data['link']);
+
+        $content = $response->getContent();
+
+        $crawler = new Crawler($content);
 
         if($crawler->filter('.css-12hdxwj')->count() === 0){
             return false;
@@ -30,7 +35,7 @@ class ScraperServices
 
         $name       = $crawler->filter('.css-1juynto')->text();
 
-        $price      = $this->findPrice($data['link'], $client, $crawler);
+        $price      = $this->findPrice($data['link'], $crawler);
 
         $currency   = $price['currency'] === 'грн.' ? self::UAH :
                         ($price['currency'] === '$' ? self::USD : self::EUR);
@@ -71,10 +76,17 @@ class ScraperServices
         return is_null($product) ? $product : $product['id'];
     }
 
-    public function findPrice($url, $client = new Client(), $crawler = null, $id = null): array|bool
+    public function findPrice($url, $crawler = null, $id = null)
     {
         if(is_null($crawler)) {
-            $crawler    = $client->request('GET', $url);
+            $client = HttpClient::create();
+
+            $response = $client->request('GET', $url);
+
+            $content = $response->getContent();
+
+            $crawler = new Crawler($content);
+//            $crawler    = $client->request('GET', $url);
         }
 
         if($crawler->filter('.css-12vqlj3')->count() === 0){
