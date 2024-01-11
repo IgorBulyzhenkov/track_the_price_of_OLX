@@ -28,4 +28,11 @@ class UserRegisterRequest extends FormRequest
             'password2' => ['required','string','same:password']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email' => 'Такий емейл вже зайнятий, введіть інший!'
+        ];
+    }
 }

@@ -15,7 +15,7 @@
                         <div class="form__wrap">
                             <div class="form__item">
                                 <label class="w-100">
-                                    <input data-error="Введіть Емейл" data-required="email" data-validate name="email" type="email" placeholder="Введіть Емейл" class="form__input">
+                                    <input data-error="Введіть Емейл" data-required="email" data-validate name="email" type="email" value="{{old('email')}}" placeholder="Введіть Емейл" class="form__input">
                                 </label>
                             </div>
                             <div class="form__item">

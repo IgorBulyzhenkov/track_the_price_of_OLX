@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends BaseController
 {
     public function index(){
-        return view('auth.login',[
-            'date'  => $this->date
-        ]);
+        return view('auth.login');
     }
 
     public function create(UserLoginRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
@@ -33,26 +31,20 @@ class LoginController extends BaseController
 
             if(is_null($user) || !Hash::check($request->password, $user->password)){
                 return redirect()
-                    ->route('login', [
-                        'date'  => $this->date
-                    ])
+                    ->route('login')
                     ->with('error','Невірний пароль, або емейл!');
             }
 
             if(!$user->email_verified_at){
                 return redirect()
-                    ->route('wait', [
-                        'date'  => $this->date
-                    ])
+                    ->route('wait')
                     ->with('error', 'Підтвердіть будь ласка свій емейл - '.$user->email);
             }
 
             Auth::login($user);
 
             return redirect()
-                ->route('home', [
-                    'date'  => $this->date
-                ])
+                ->route('home')
                 ->with('success','Вітаю '.$user->name);
 
         }catch (\Throwable $e){

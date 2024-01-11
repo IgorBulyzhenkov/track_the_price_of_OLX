@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__wrap">
-            <span class="footerData">{{ $date }}</span>
+            <span class="footerData">{{ date('Y') }}</span>
             <span class="footerText">All Rights Reserved</span>
             <span class="footerText"> Developed with</span>
             <img class="footer_logo" src="{{ asset('img/ukr.jpg') }}" alt="ukraine" width="30"/>

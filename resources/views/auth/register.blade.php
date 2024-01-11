@@ -15,17 +15,17 @@
                         <div class="form__wrap">
                             <div class="form__item">
                                 <label class="w-100">
-                                    <input data-error="Введіть ім'я" data-required="name" data-validate name="name" type="text" placeholder="Введіть ім'я" class="form__input">
+                                    <input data-error="Введіть ім'я" data-required="name" data-validate name="name" type="text" value="{{old('name')}}" placeholder="Введіть ім'я" class="form__input">
                                 </label>
                             </div>
                             <div class="form__item">
                                 <label class="w-100">
-                                    <input data-error="Введіть Емейл" data-required="email" data-validate name="email" type="email" placeholder="Введіть Емейл" class="form__input">
+                                    <input data-error="Введіть Емейл" data-required="email" data-validate name="email" type="email" value="{{old('email')}}" placeholder="Введіть Емейл" class="form__input">
                                 </label>
                             </div>
                             <div class="form__item">
                                 <label class="w-100">
-                                    <input data-error="Повторіть емейл" data-required="email2" data-validate name="email2" type="email" placeholder="Введіть повторно Емейл" class="form__input">
+                                    <input data-error="Повторіть емейл" data-required="email2" data-validate name="email2" type="email" value="{{old('email2')}}" placeholder="Введіть повторно Емейл" class="form__input">
                                 </label>
                             </div>
                             <div class="form__item">

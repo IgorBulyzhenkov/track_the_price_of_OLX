@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Session;
 class RegisterController extends BaseAuthController
 {
     public function index(){
-        return view('auth.register',[
-            'date'  => $this->date
-        ]);
+        return view('auth.register');
     }
 
     public function create(UserRegisterRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
@@ -49,9 +47,7 @@ class RegisterController extends BaseAuthController
             DB::commit();
 
             return redirect()
-                ->route('wait',[
-                    'date'  => $this->date
-                ])
+                ->route('wait')
                 ->with('success', 'Вам на почту '.$user->email.' відправлено лист для підтвердження!');
 
         }catch (\Throwable $e){

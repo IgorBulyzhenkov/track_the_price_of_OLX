@@ -10,7 +10,6 @@ class WaitController extends BaseController
     public function index()
     {
         return view('confirm.wait',[
-            'date'  => $this->date,
             'send'  => Cache::get('email_send_again')
         ]);
     }

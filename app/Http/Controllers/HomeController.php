@@ -15,8 +15,7 @@ class HomeController extends BaseController
         $data = $this->getGoods();
 
         return view('home.index',[
-            'data'  => $data,
-            'date'  => $this->date
+            'data'  => $data
         ]);
     }
 

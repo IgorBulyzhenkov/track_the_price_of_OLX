@@ -13,11 +13,4 @@ class BaseController extends Controller
     const USD               = 'USD';
     const UAH               = 'UAH';
     const EUR               = 'EUR';
-
-    protected string $date;
-
-    public function __construct()
-    {
-        $this->date = Carbon::now()->format('Y');
-    }
 }
