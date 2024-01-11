@@ -4,7 +4,6 @@ namespace App\Services\Scraper;
 
 use App\Models\Goods;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpClient\HttpClient;
 
 class ScraperServices
 {
@@ -15,17 +14,19 @@ class ScraperServices
 
     public function scrape($data)
     {
-        $client = HttpClient::create();
+        $dataLink = $data['link'];
+        $content = file_get_contents($dataLink);
 
-        $response = $client->request('GET', $data['link']);
-
-        $content = $response->getContent();
+        if ($content === false) {
+            return false;
+        }
 
         $crawler = new Crawler($content);
 
-        if($crawler->filter('.css-12hdxwj')->count() === 0){
+        if ($crawler->filter('.css-12hdxwj')->count() === 0) {
             return false;
         }
+
 
         $productId  = explode(' ', $crawler->filter('.css-12hdxwj')->text());
 
@@ -79,14 +80,10 @@ class ScraperServices
     public function findPrice($url, $crawler = null, $id = null)
     {
         if(is_null($crawler)) {
-            $client = HttpClient::create();
-
-            $response = $client->request('GET', $url);
-
-            $content = $response->getContent();
+            $dataLink = $url;
+            $content = file_get_contents($dataLink);
 
             $crawler = new Crawler($content);
-//            $crawler    = $client->request('GET', $url);
         }
 
         if($crawler->filter('.css-12vqlj3')->count() === 0){
