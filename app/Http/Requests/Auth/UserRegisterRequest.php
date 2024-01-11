@@ -33,7 +33,7 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             'email'     => 'Такий емейл вже зайнятий, введіть інший!',
-            'password'  => 'Пароль повинен бути не менше 6 символив!'
+            'password'  => 'Пароль повинен бути не менше 6 символів!'
         ];
     }
 }

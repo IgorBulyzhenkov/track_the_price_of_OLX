@@ -32,7 +32,8 @@ class LoginController extends BaseController
             if(is_null($user) || !Hash::check($request->password, $user->password)){
                 return redirect()
                     ->route('login')
-                    ->with('error','Невірний пароль, або емейл!');
+                    ->with('error','Невірний пароль, або емейл!')
+                    ->withInput();
             }
 
             if(!$user->email_verified_at){

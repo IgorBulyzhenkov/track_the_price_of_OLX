@@ -30,7 +30,7 @@ class UserLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'password' => 'Пароль повинен бути не менше 6 символив!'
+            'password' => 'Пароль повинен бути не менше 6 символів!'
         ];
     }
 }
