@@ -40,4 +40,8 @@ Route::middleware('auth')->group( function (){
     Route::get('/logout',                       [LogoutController::class, 'logout'])->name('logout');
 
     Route::post('/product/create',              [GoodsController::class, 'create'])->name('product.create');
+
+    Route::delete('/delete/{id}',               [GoodsController::class, 'delete'])->name('delete.product');
+
+    Route::post('/check-price/{id}',            [GoodsController::class, 'check'])->name('check.price');
 });

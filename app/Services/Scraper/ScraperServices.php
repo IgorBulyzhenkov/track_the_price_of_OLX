@@ -3,6 +3,7 @@
 namespace App\Services\Scraper;
 
 use App\Models\Goods;
+use Mockery\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 class ScraperServices
@@ -17,7 +18,7 @@ class ScraperServices
         try{
             $dataLink = $data['link'];
             $content = file_get_contents($dataLink);
-            
+
             if ($content === false) {
                 return false;
             }
@@ -83,35 +84,37 @@ class ScraperServices
 
     public function findPrice($url, $crawler = null, $id = null)
     {
-        if(is_null($crawler)) {
+        try {
+            if(is_null($crawler)) {
+                $content = file_get_contents($url);
 
-            $dataLink = $data['link'];
-            $content = file_get_contents($dataLink);
+                if ($content === false) {
+                    return false;
+                }
 
-            if ($content === false) {
+                $crawler = new Crawler($content);
+            }
+
+            if($crawler->filter('.css-12vqlj3')->count() === 0){
                 return false;
             }
 
-            $crawler = new Crawler($content);
-        }
+            $text_price     = $crawler->filter('.css-12vqlj3')->text();
 
-        if($crawler->filter('.css-12vqlj3')->count() === 0){
+            $currency       = explode(' ', $text_price);
+
+            $index          = count($currency) - 1;
+
+            $currency       = $currency[$index];
+
+            $price          = preg_replace("/[^0-9]/", "", str_replace(' ', '', $text_price));
+
+            return [
+                'price'     => $price,
+                'currency'  => $currency
+            ];
+        }catch (Exception $e){
             return false;
         }
-
-        $text_price     = $crawler->filter('.css-12vqlj3')->text();
-
-        $currency       = explode(' ', $text_price);
-
-        $index          = count($currency) - 1;
-
-        $currency       = $currency[$index];
-
-        $price          = preg_replace("/[^0-9]/", "", str_replace(' ', '', $text_price));
-
-        return [
-            'price'     => $price,
-            'currency'  => $currency
-        ];
     }
 }

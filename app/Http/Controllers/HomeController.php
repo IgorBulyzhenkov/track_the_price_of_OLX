@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends BaseController
 {
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
         $data = $this->getGoods();
 
@@ -46,11 +46,22 @@ class HomeController extends BaseController
                 $currency   = $product->currency === self::UAH ? 'грн' :
                                 ($product->currency === self::USD ? '$' : '€');
 
+                $action = '<form action="'. route('check.price',['id' => $product->id]).'" method="POST">
+                                <input value="'.csrf_token().'" type="hidden" name="_token" autocomplete="off">
+                                <button type="submit" class="btn btn-info btn_check">Перевірити</button>
+                            </form>
+                            <form action="'. route('delete.product',['id' => $product->id]).'" method="POST">
+                                <input value="'.csrf_token().'" type="hidden" name="_token" autocomplete="off">
+                                <input value="DELETE" type="hidden" name="_method" autocomplete="off">
+                                <button type="submit" class="btn btn-danger btn_delete" >Видалити</button>
+                            </form>';
+
                 $data->push(collect([
                     $product->id_product,
                     $link,
                     $product->price.' '.$currency,
-                    $active
+                    $active,
+                    $action
                 ]));
             }
         }

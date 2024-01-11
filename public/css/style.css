@@ -2171,3 +2171,38 @@ input[type=number]::-webkit-outer-spin-button {
 .link_product{
     text-decoration: underline;
 }
+
+.btn_check{
+    color: #ffffffb3;
+    border-color: #ffebcda1;
+    background: black;
+}
+
+.btn_delete{
+    color: #ffffffb3;
+    border-color: #ffebcda1;
+    background: #460606;
+}
+
+.btn_check,
+.btn_delete{
+    font-size: 15px;
+    padding: 14px;
+    height: 0;
+    margin-bottom: 12px;
+    min-width: 140px;
+}
+
+.btn_check:hover,
+.btn_check:focus{
+    color: #fffffff2;
+    background: #6a5f5f82;
+    border-color: #ffebcda1;
+}
+
+.btn_delete:hover,
+.btn_delete:focus{
+    color: #fffffff2;
+    background: rgba(223, 15, 15, 0.77);
+    border-color: #ffebcda1;
+}

@@ -54,6 +54,7 @@
                                     <th>Ім'я</th>
                                     <th>Ціна</th>
                                     <th>В наявності</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                             </table>

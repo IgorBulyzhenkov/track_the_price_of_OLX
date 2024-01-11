@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GoodsRequest;
+use App\Models\Goods;
 use App\Models\GoodsToUsers;
 use App\Services\Scraper\ScraperServices;
 use Carbon\Carbon;
 
-class GoodsController extends Controller
+class GoodsController extends BaseController
 {
     private ScraperServices $scrapeService;
     public function __construct(ScraperServices $scraperServices)
@@ -47,5 +48,53 @@ class GoodsController extends Controller
             ]);
 
         return redirect()->route('home')->with('success', 'Товар додано на опрацювання!');
+    }
+
+    public function delete($id): \Illuminate\Http\RedirectResponse
+    {
+        $product = Goods::query()
+            ->where('id', $id)
+            ->first();
+
+        if(!$product->id){
+            return redirect()->route('home')->with('error', "Такого оголошення не знаййденно!");
+        }
+
+        $product->delete();
+
+        return redirect()->route('home')->with('success', "Оголошення відаленно!");
+    }
+
+    public function check($id, ScraperServices $scraperServices): \Illuminate\Http\RedirectResponse
+    {
+        $product = Goods::query()
+            ->where('id', $id)
+            ->first();
+
+        if(!$product->id){
+            return redirect()->route('home')->with('error', "Такого оголошення не знайденно!");
+        }
+
+        $price = $scraperServices->findPrice($product->link);
+
+        if (!$price){
+            $product->is_active = '0';
+            $product->save();
+            return redirect()->route('home')->with('error', "Такого оголошення не знайденно!");
+        }
+
+        if($price['price'] === $product->price){
+            return redirect()->route('home')->with('success', "Цінна не змінилася!");
+        }
+
+        $product->price = $price['price'];
+
+        $currency   = $price['currency'] === 'грн.' ? self::UAH :
+            ($price['currency'] === '$' ? self::USD : self::EUR);
+
+        $product->currency = $currency;
+        $product->save();
+
+        return redirect()->route('home')->with('success', "Цінна змінилася! Нова цінна ".$price['price'].' '.$price['currency']."!");
     }
 }
