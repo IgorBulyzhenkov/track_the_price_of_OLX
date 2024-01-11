@@ -14,58 +14,62 @@ class ScraperServices
 
     public function scrape($data)
     {
-        $dataLink = $data['link'];
-        $content = file_get_contents($dataLink);
+        try{
+            $dataLink = $data['link'];
+            $content = file_get_contents($dataLink);
+            
+            if ($content === false) {
+                return false;
+            }
 
-        if ($content === false) {
+            $crawler = new Crawler($content);
+
+            if($crawler->filter('.css-12hdxwj')->count() === 0){
+                return false;
+            }
+
+            $productId  = explode(' ', $crawler->filter('.css-12hdxwj')->text());
+
+            if($id = $this->findId($productId[1])){
+                return $id;
+            }
+
+            $name       = $crawler->filter('.css-1juynto')->text();
+
+            $price      = $this->findPrice($data['link'], $crawler);
+
+            $currency   = $price['currency'] === 'грн.' ? self::UAH :
+                ($price['currency'] === '$' ? self::USD : self::EUR);
+
+            $dataProduct = [
+                'productId'     => $productId[1],
+                'name'          => $name,
+                'price'         => $price['price'],
+                'currency'      => $currency,
+                'time_update'   => $data['time_update'],
+                'link'          => $data['link']
+            ];
+
+            return $this->product($dataProduct);
+        }catch(\Exception $e){
             return false;
         }
 
-        $crawler = new Crawler($content);
-
-        if ($crawler->filter('.css-12hdxwj')->count() === 0) {
-            return false;
-        }
-
-
-        $productId  = explode(' ', $crawler->filter('.css-12hdxwj')->text());
-
-        if($id = $this->findId($productId[1])){
-            return $id;
-        }
-
-        $name       = $crawler->filter('.css-1juynto')->text();
-
-        $price      = $this->findPrice($data['link'], $crawler);
-
-        $currency   = $price['currency'] === 'грн.' ? self::UAH :
-                        ($price['currency'] === '$' ? self::USD : self::EUR);
-
-        $dataProduct = [
-            'productId'     => $productId[1],
-            'name'          => $name,
-            'price'         => $price['price'],
-            'currency'      => $currency,
-            'time_update'   => $data['time_update'],
-            'link'          => $data['link']
-        ];
-
-        return $this->product($dataProduct);
     }
 
     private function product($data)
     {
-            $product_new = Goods::query()
-                ->create([
-                    'link'          => $data['link'],
-                    'name'          => $data['name'],
-                    'price'         => $data['price'],
-                    'currency'      => $data['currency'],
-                    'id_product'    => $data['productId'],
-                    'is_active'     => self::BOOL_TRUE
-                ]);
+        $product_new = Goods::query()
+            ->create([
+                'link'          => $data['link'],
+                'name'          => $data['name'],
+                'price'         => $data['price'],
+                'currency'      => $data['currency'],
+                'id_product'    => $data['productId'],
+                'is_active'     => self::BOOL_TRUE
+            ]);
 
-            return $product_new->id;
+        return $product_new->id;
     }
 
     private function findId($id)
@@ -80,8 +84,13 @@ class ScraperServices
     public function findPrice($url, $crawler = null, $id = null)
     {
         if(is_null($crawler)) {
-            $dataLink = $url;
+
+            $dataLink = $data['link'];
             $content = file_get_contents($dataLink);
+
+            if ($content === false) {
+                return false;
+            }
 
             $crawler = new Crawler($content);
         }
@@ -89,6 +98,7 @@ class ScraperServices
         if($crawler->filter('.css-12vqlj3')->count() === 0){
             return false;
         }
+
         $text_price     = $crawler->filter('.css-12vqlj3')->text();
 
         $currency       = explode(' ', $text_price);
