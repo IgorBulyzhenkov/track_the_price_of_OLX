@@ -17,7 +17,7 @@ class LoginController extends BaseController
         return view('auth.login');
     }
 
-    public function create(UserLoginRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+    public function create(UserLoginRequest $request)
     {
         try{
 

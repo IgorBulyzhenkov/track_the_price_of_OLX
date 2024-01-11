@@ -26,4 +26,11 @@ class UserLoginRequest extends FormRequest
             'password'  => ['required','string','min:6']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'password' => 'Пароль повинен бути не менше 6 символив!'
+        ];
+    }
 }

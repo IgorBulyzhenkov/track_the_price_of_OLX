@@ -18,7 +18,7 @@ class RegisterController extends BaseAuthController
         return view('auth.register');
     }
 
-    public function create(UserRegisterRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+    public function create(UserRegisterRequest $request)
     {
         try{
             DB::beginTransaction();
