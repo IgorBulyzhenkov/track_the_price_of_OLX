@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class ConfirmEmailController extends BaseController
 {
@@ -27,6 +28,8 @@ class ConfirmEmailController extends BaseController
         }
 
         Cache::delete('email_send_'.$user->id);
+        Cache::delete('email_send_again');
+        Session::forget('send_email');
 
         $user->email_verified_at = Carbon::now();
 

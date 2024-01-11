@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Email\ConfirmEmailController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SendAgainEmailController;
 use App\Http\Controllers\WaitController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::middleware('guest')->group( function(){
 
     Route::post('/register/create',             [RegisterController::class, 'create'])->name('reg.create');
     Route::post('/login/create',                [LoginController::class, 'create'])->name('login.create');
-
+    Route::post('/send-again',                  [SendAgainEmailController::class, 'send'])->name('send_again_email');
 });
 
 Route::middleware('auth')->group( function (){

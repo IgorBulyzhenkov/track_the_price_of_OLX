@@ -6,6 +6,7 @@ use App\Console\Commands\SendEmailCron;
 use App\Models\Goods;
 use App\Services\Scraper\ScraperServices;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends BaseController
 {

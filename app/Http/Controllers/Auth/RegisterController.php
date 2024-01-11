@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends BaseAuthController
 {
@@ -36,7 +37,11 @@ class RegisterController extends BaseAuthController
             $currentDateTime    = Carbon::now();
             $newDateTime        = $currentDateTime->addSeconds(600);
 
-            Cache::put('email_send_'.$user->id,'send',$newDateTime);
+            Cache::put('email_send_'.$user->id,'send', $newDateTime);
+
+            Cache::put('email_send_again', $user->fresh()->email, $newDateTime);
+
+            Session::put('send_email', $user->fresh()->email);
 
             Mail::to($user->fresh()->email)
                 ->send(new ConfirmEmail($user->fresh()));
