@@ -48,15 +48,14 @@ class SendEmailCron extends Command
 
                 $currentPrice = $this->getCurrentPrice($data['link']);
 
-                if(!$currentPrice['price']){
+                if(!$currentPrice){
                     $data->is_active = '0';
                 }else{
                     $data->is_active = '1';
                 }
-
                 $data->save();
 
-                if ((int)$currentPrice['price'] !== (int)$data['price']) {
+                if ((int) $currentPrice['price'] !== (int) $data['price']) {
                     $this->updateProductPrice($product, $currentPrice);
                     $this->notifyUser($product, $data);
                 }
@@ -64,7 +63,7 @@ class SendEmailCron extends Command
         }
     }
 
-    private function getCurrentPrice($url)
+    private function getCurrentPrice($url): array|string|null
     {
         $scraperService = new ScraperServices();
 

@@ -86,17 +86,20 @@ class ScraperServices
     {
         try {
             if(is_null($crawler)) {
-                $content = file_get_contents($url);
+                $context = stream_context_create(['http' => ['ignore_errors' => true]]);
+                $content = file_get_contents($url, false, $context);
 
-                if ($content === false) {
-                    return false;
+                $httpStatus = explode(' ', $http_response_header[0]);
+
+                if($httpStatus[1] === '301'){
+                    return ['price' => false];
                 }
 
                 $crawler = new Crawler($content);
             }
 
             if($crawler->filter('.css-12vqlj3')->count() === 0){
-                return false;
+                return ['price' => false];
             }
 
             $text_price     = $crawler->filter('.css-12vqlj3')->text();
