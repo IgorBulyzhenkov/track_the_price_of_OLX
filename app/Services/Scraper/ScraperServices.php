@@ -117,7 +117,7 @@ class ScraperServices
                 'currency'  => $currency
             ];
         }catch (Exception $e){
-            return false;
+            return ['price' => false];
         }
     }
 }

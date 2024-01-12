@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Console\Commands\SendEmailCron;
 use App\Models\Goods;
 
 class HomeController extends BaseController

@@ -77,7 +77,7 @@ class GoodsController extends BaseController
 
         $price = $scraperServices->findPrice($product->link);
 
-        if (!$price){
+        if (!$price['price']){
             $product->is_active = '0';
             $product->save();
             return redirect()->route('home')->with('error', "Такого оголошення не знайденно!");
